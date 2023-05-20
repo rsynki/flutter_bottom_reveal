@@ -68,7 +68,7 @@ class _BottomRevealState extends State<BottomReveal>
     widget.controller?.toggle = _toggle;
     return Scaffold(
       backgroundColor: widget.backColor,
-      floatingActionButton: _buildActionButton(),
+      floatingActionButton: _buildActionButton(context),
       body: Stack(
         children: <Widget>[
           if (widget.rightContent != null)
@@ -137,9 +137,9 @@ class _BottomRevealState extends State<BottomReveal>
     );
   }
 
-  FloatingActionButton _buildActionButton() {
+  FloatingActionButton _buildActionButton(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: Colors.pink,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       elevation: 0,
       child: AnimatedBuilder(
         animation: _controller,
@@ -162,7 +162,7 @@ class _BottomRevealState extends State<BottomReveal>
     setState(() {
       rightMargin = widget.revealWidth;
       bottomMargin = widget.revealHeight;
-      _controller.reverse();
+      _controller.forward();
       opened = true;
     });
   }
